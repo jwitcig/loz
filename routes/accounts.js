@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var bodyParser = require('body-parser');
-var mongoose = require('../lib/mongoose');
 
 var Account = require('../models/account');
 
@@ -28,6 +27,8 @@ router.get('/:id', function(req, res, next) {
 router.post('/login', function(req, res, next) {
   Account.findOne({username: req.body.username}).then(account => {
     if (account.password.encrypted == req.body.password) {
+      console.log('Logged in: ' + req.body.username);
+
       req.session.userId = account._id;
       res.send(account._id);
       return;

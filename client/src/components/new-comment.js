@@ -6,47 +6,41 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createLocation } from '../actions/locationActions';
+import { createComment } from '../actions/commentActions';
 
 class Form extends Component {
   state = {}
 
   constructor(props) {
     super(props);
-    this.nameChanged = this.nameChanged.bind(this);
-    this.descriptionChanged = this.descriptionChanged.bind(this);
+    this.handleChanged = this.handleChanged.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  nameChanged(event) {
-    this.setState({name: event.target.value});
-  }
-
-  descriptionChanged(event) {
-    this.setState({description: event.target.value});
+  handleChanged(event) {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    this.props.createLocation(this.compileDocument())
+    this.props.createComment(this.compileDocument())
               .then(locationId => window.location.assign('/locations/'+locationId));
   }
 
   compileDocument() {
     return {
-      name: this.state.name,
-      description: this.state.description,
+      owner: { id: this.props.ownerId, modelType: 'location' },
+      body: this.state.body,
     }
   }
 
   render() {
     return (
       <form key="create" onSubmit={this.handleSubmit}>
-        <FormLabel>name:</FormLabel>
-        <TextField type="text" name="name" key="name" onChange={this.nameChanged}/>
-        <FormLabel>description:</FormLabel>
-        <TextField type="text" name="color" key="color" onChange={this.descriptionChanged}/>
+        <FormLabel>text:</FormLabel>
+        <TextField type="text" name="body" key="body" onChange={this.handleChanged}/>
         <Button type="submit">Create</Button>
       </form>
     );
@@ -54,12 +48,11 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  createLocation: PropTypes.func.isRequired,
-  location: PropTypes.object
+  createComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  newLocationID: state.locations.item
+
 });
 
-export default connect(mapStateToProps, { createLocation })(Form);
+export default connect(mapStateToProps, { createComment })(Form);

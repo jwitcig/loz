@@ -37,7 +37,7 @@ export const login = (username, password) => dispatch => {
         payload: response.data,
       });
       return response.data;
-    });
+    }).catch(console.log);
 };
 
 export const logout = (username, password) => dispatch => {
