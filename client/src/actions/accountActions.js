@@ -1,27 +1,32 @@
 import axios from 'axios';
 
-import { CREATE_ACCOUNT, FETCH_ACCOUNT, LOGIN, LOGOUT } from './types';
+import { api } from './apiActions.js';
+
+export const CREATE = 'CREATE_ACCOUNT';
+export const GET = 'FETCH_ACCOUNT';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 
 export const createAccount = accountData => dispatch => {
-  return axios.post('/accounts', accountData)
-    .then(accountId => {
-      dispatch({
-        type: CREATE_ACCOUNT,
-        payload: accountId
-      });
-      return accountId;
-    });
+  return api({
+    method: 'PUT',
+    path: '/accounts',
+    data: accountData,
+  }, {
+    actionName: CREATE,
+    dispatch: dispatch,
+  });
 };
 
 export const fetchAccount = id => dispatch => {
-  return axios.get('/accounts/'+id)
-    .then(account => {
-      dispatch({
-        type: FETCH_ACCOUNT,
-        payload: account
-      });
-      return account;
-    });
+  return api({
+    method: 'GET',
+    path: '/accounts/' + id,
+    data: null,
+  }, {
+    actionName: GET,
+    dispatch: dispatch,
+  });
 };
 
 export const login = (username, password) => dispatch => {

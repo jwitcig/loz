@@ -1,4 +1,4 @@
-import { FETCH_LOCATION, FETCH_LOCATIONS, CREATE_LOCATION, DELETE_ALL_LOCATIONS } from '../actions/types';
+import { GET, LIST, CREATE, DELETE_ALL } from '../actions/locationActions';
 
 const initialState = {
   items: [],
@@ -7,25 +7,25 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_LOCATION:
+    case GET:
       return {
         ...state,
         item: action.payload
       };
-    case FETCH_LOCATIONS:
+    case LIST:
       return {
         ...state,
         items: action.payload
       };
-    case CREATE_LOCATION:
+    case CREATE:
       return {
         ...state,
         item: action.payload
       };
-    case DELETE_ALL_LOCATIONS:
+    case DELETE_ALL:
       return {
         ...state,
-        items: action.payload
+        items: []
       };
     default:
       return state;

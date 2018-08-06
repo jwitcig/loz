@@ -1,9 +1,0 @@
-export const FETCH_LOCATION = 'FETCH_LOCATION';
-export const FETCH_LOCATIONS = 'FETCH_LOCATIONS';
-export const CREATE_LOCATION = 'CREATE_LOCATION';
-export const DELETE_ALL_LOCATIONS = 'DELETE_ALL_LOCATIONS';
-
-export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
-export const FETCH_ACCOUNT = 'FETCH_ACCOUNT';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';

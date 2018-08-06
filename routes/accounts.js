@@ -9,7 +9,7 @@ var Account = require('../models/account');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.post('/', function(req, res) {
+router.put('/', function(req, res) {
   Account.create({
     user: req.body.user,
     username: req.body.username,

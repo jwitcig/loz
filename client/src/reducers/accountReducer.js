@@ -1,4 +1,4 @@
-import { CREATE_ACCOUNT, FETCH_ACCOUNT, LOGIN, LOGOUT } from '../actions/types';
+import { CREATE, GET, LOGIN, LOGOUT } from '../actions/accountActions';
 
 const initialState = {
   items: [],
@@ -7,12 +7,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case CREATE_ACCOUNT:
+    case CREATE:
       return {
         ...state,
         item: action.payload
       };
-    case FETCH_ACCOUNT:
+    case GET:
       return {
         ...state,
         item: action.payload

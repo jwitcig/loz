@@ -1,45 +1,52 @@
 import axios from 'axios';
 
-import { FETCH_LOCATION, FETCH_LOCATIONS, CREATE_LOCATION, DELETE_ALL_LOCATIONS } from './types';
+import { api } from './apiActions.js';
+
+export const GET = 'FETCH_LOCATION';
+export const LIST = 'FETCH_LOCATIONS';
+export const CREATE = 'CREATE_LOCATION';
+export const DELETE_ALL = 'DELETE_ALL_LOCATIONS';
 
 export const fetchLocation = id => dispatch => {
-  axios.get('/locations/' + id)
-    .then(location => {
-      dispatch({
-        type: FETCH_LOCATION,
-        payload: location
-      })
-    })
-    .catch(alert);
+  return api({
+    method: 'GET',
+    path: '/locations/' + id,
+    data: null,
+  }, {
+    actionName: GET,
+    dispatch: dispatch
+  });
 };
 
 export const fetchLocations = () => dispatch => {
-  axios.get('/locations')
-    .then(response =>
-      dispatch({
-        type: FETCH_LOCATIONS,
-        payload: response.data
-      })
-    );
+  return api({
+    method: 'GET',
+    path: '/locations',
+    data: null,
+  }, {
+    actionName: LIST,
+    dispatch: dispatch,
+  });
 };
 
 export const createLocation = locationData => dispatch => {
-  return axios.post('/locations', locationData, { withCredentials: true })
-    .then(response => {
-      dispatch({
-        type: CREATE_LOCATION,
-        payload: response.data
-      })
-      return response.data;
-    });
+  return api({
+    method: 'PUT',
+    path: '/locations',
+    data: locationData,
+  }, {
+    actionName: CREATE,
+    dispatch: dispatch,
+  });
 };
 
 export const deleteAllLocations = () => dispatch => {
-  axios.get('/locations/delete')
-    .then(() =>
-      dispatch({
-        type: DELETE_ALL_LOCATIONS,
-        payload: []
-      })
-    );
+  return api({
+    method: 'DELETE',
+    path: '/locations/delete',
+    data: null,
+  }, {
+    actionName: DELETE_ALL,
+    dispatch: dispatch,
+  });
 };

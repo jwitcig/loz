@@ -22,12 +22,10 @@ router.get('/', function(req, res, next) {
     }
   ]).then(results => {
     res.send(results);
-  }).catch(error => {
-    console.log(error);
-  });
+  }).catch(console.log);
 });
 
-router.post('/', function(req, res) {
+router.put('/', function(req, res) {
   Account.findById(req.session.userId).then(account => {
     return Location.create({
       name: req.body.name,
@@ -41,18 +39,16 @@ router.post('/', function(req, res) {
     .catch(console.error);
 });
 
-router.get('/delete', function(req, res) {
+router.delete('/delete', function(req, res) {
   Location.remove({})
-      .then(res.send.bind(res))
-      .catch(err => console.error(err));
+    .then(res.send.bind(res))
+    .catch(console.error);
 });
 
 router.get('/:id', function(req, res, next) {
-  Location.findById(req.params.id).then(results => {
-    res.send(results);
-  }).catch(error => {
-    console.log(error);
-  });
+  Location.findById(req.params.id)
+    .then(results => res.send(results))
+    .catch(console.log);
 });
 
 module.exports = router;

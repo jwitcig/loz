@@ -6,7 +6,6 @@ import { fetchAccount } from '../actions/accountActions';
 class Account extends Component {
   componentWillMount() {
     this.props.fetchAccount(this.props.match.params.id);
-    // this.props.fetchAccount('5b677be65e4aa9264977841d');
   }
 
   render() {
