@@ -13,15 +13,16 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import SocketContext from './socketContext';
-import CreateItem from './create-item';
-import NewAccount from './components/new-account';
-import Account from './components/account';
-import Item from './components/location';
-import ListItems from './components/locations';
-import SignIn from './components/sign-in';
-import SignOut from './components/sign-out';
 import { Provider } from 'react-redux';
 import store from './store';
+
+import NewLocation from './components/new-location';
+import NewAccount from './components/new-account';
+import Account from './components/account';
+import Location from './components/location';
+import LocationsList from './components/locations';
+import SignIn from './components/sign-in';
+import SignOut from './components/sign-out';
 
 import {
   Route,
@@ -133,9 +134,9 @@ class App extends Component {
           </AppBar>
 
           <Switch>
-            <Route exact path="/locations/new" component={CreateItem}/>
-            <Route exact path="/locations" component={ListItems}/>
-            <Route path="/locations/:id" component={Item}/>
+            <Route exact path="/locations/new" component={NewLocation}/>
+            <Route exact path="/locations" component={LocationsList}/>
+            <Route path="/locations/:id" component={Location}/>
             <Route exact path="/accounts/new" component={NewAccount}/>
             <Route exact path="/accounts/sign-in" component={SignIn} key="sign-in"/>
             <Route exact path="/accounts/sign-out" component={SignOut} key="sign-out"/>

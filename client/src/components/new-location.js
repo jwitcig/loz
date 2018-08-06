@@ -6,7 +6,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createLocation } from './actions/locationActions';
+import { createLocation } from '../actions/locationActions';
 
 class Form extends Component {
   state = {}

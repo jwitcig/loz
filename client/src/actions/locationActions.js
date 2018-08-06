@@ -15,10 +15,10 @@ export const fetchLocation = id => dispatch => {
 
 export const fetchLocations = () => dispatch => {
   axios.get('/locations')
-    .then(locations =>
+    .then(response =>
       dispatch({
         type: FETCH_LOCATIONS,
-        payload: locations
+        payload: response.data
       })
     );
 };
