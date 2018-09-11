@@ -112,8 +112,8 @@ class App extends Component {
         <div className="App">
           <AppBar position="static">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                <MenuIcon onClick={this.toggleDrawer('left', true)}/>
+              <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+                <MenuIcon/>
               </IconButton>
               <Typography variant="title" color="inherit" className={classes.flex}>
                 The Lake
